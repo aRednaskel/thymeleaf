@@ -5,10 +5,7 @@ import com.thymeleaf.learn.Thymeleaf.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,11 +34,27 @@ public class UserController {
         return "users/form";
     }
 
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("userId") long userId, Model model) {
+
+        User user = userService.findById(userId);
+
+        model.addAttribute("user", user);
+
+        return "users/form";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("userId") long userId) {
+        userService.deleteById(userId);
+        return "redirect:/users/list";
+    }
+
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.save(user);
 
-        return "users/list";
+        return "redirect:/users/list";
     }
 
 }
