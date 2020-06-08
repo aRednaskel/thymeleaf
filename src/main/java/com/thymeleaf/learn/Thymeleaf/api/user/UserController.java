@@ -50,6 +50,16 @@ public class UserController {
         return "redirect:/users/list";
     }
 
+    @GetMapping("/search")
+    public String delete(@RequestParam("name") String name, Model model) {
+        List<User> users = userService.findByName(name);
+
+        model.addAttribute("users", users);
+
+        return "/users/list";
+
+    }
+
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.save(user);

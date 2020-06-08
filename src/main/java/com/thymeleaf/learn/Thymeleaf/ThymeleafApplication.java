@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableJpaRepositories
 @EnableJpaAuditing
+@EnableJpaRepositories
 @Configuration
 public class ThymeleafApplication {
 

@@ -4,8 +4,15 @@ import com.thymeleaf.learn.Thymeleaf.domain.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+interface UserRepository extends JpaRepository<User, Long> {
 
-    public List<User> findAllByOrderByLastNameAsc();
+    List<User> findAllByOrderByLastNameAsc();
+
+    List<User> findByFirstNameContainsOrLastNameContainsAllIgnoreCase(String name, String lastName);
+
+    Optional<User> findByFirstNameAndLastNameContainsAllIgnoreCase(String firstName, String lastName);
+
+    Optional<User> findByUsername(String username);
 }

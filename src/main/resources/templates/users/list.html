@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +16,20 @@
 
 	<h3>User Directory</h3>
 	<hr>
-	<a th:href="@{/users/showFormForAdd}" class="btn btn-primary btn-sm mb-3">Add User</a>
+
+	<div>
+		User: <span sec:authentication="name"></span>
+		<br>
+		Role(s): <span sec:authentication="principal.authorities"></span>
+		<br><br>
+	</div>
+
+	<form th:action="@{/users/search}" class="form-inline">
+		<a th:href="@{/users/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3"> Add User </a>
+		<input class="form-control  ml-5 mr-sm-2 mb-3" type="search" name="userName" placeholder="Search by name" />
+		<button class="btn btn-success mb-3" type="submit">Search</button>
+	</form>
+	
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
@@ -42,6 +55,10 @@
 			</tr>
 		</tbody>		
 	</table>
+
+	<form action="#" th:action="@{/logout}" method="POST">
+		<input type="submit" value="Logout" class="btn btn-outline-primary mt-2" />
+	</form>
 	
 </div>
 	
