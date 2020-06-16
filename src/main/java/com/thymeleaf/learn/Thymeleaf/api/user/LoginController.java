@@ -1,4 +1,4 @@
-package com.thymeleaf.learn.Thymeleaf.api.login;
+package com.thymeleaf.learn.Thymeleaf.api.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
