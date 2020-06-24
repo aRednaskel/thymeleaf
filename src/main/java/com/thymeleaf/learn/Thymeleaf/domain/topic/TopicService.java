@@ -1,5 +1,6 @@
 package com.thymeleaf.learn.Thymeleaf.domain.topic;
 
+import com.thymeleaf.learn.Thymeleaf.domain.model.question.Question;
 import com.thymeleaf.learn.Thymeleaf.domain.model.topic.Topic;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface TopicService {
 
     void deleteById(long id);
 
+    void addQuestion(Question question, long id);
 }

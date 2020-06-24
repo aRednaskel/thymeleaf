@@ -1,28 +1,34 @@
 package com.thymeleaf.learn.Thymeleaf.domain.model.question;
 
 import com.thymeleaf.learn.Thymeleaf.domain.model.topic.Topic;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "questions")
-@RequiredArgsConstructor
+@Table(name = "questions", schema = "public")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class Question {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String question;
-    private String[] answers;
+    private String firstAnswer;
+    private String secondAnswer;
+    private String thirdAnswer;
+    private String fourthAnswer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "topic_id")
     private Topic topic;
 
-    public Question(String question, String[] answers, Topic topic) {
-        this.question = question;
-        this.answers = answers;
+    public Question(Topic topic) {
         this.topic = topic;
     }
+
 }

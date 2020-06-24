@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Question</title>
+</head>
+<body>
+<div class="container">
+    <h3>Question Directory</h3>
+    <hr>
+    <p class="h4 mb-4">Save Question</p>
+    <form action="#" th:action="@{/topics/newQuestion(topicId=${newQuestion.topic.id})}" th:object="${newQuestion}" method="POST" modelAttribute="newQuestion">
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{question}" class="form-control mb-4 col-4" placeholder="Question">
+        <input type="text" th:field="*{firstAnswer}" class="form-control mb-4 col-4" placeholder="First answer">
+        <input type="text" th:field="*{secondAnswer}" class="form-control mb-4 col-4" placeholder="Second answer">
+        <input type="text" th:field="*{thirdAnswer}" class="form-control mb-4 col-4" placeholder="Third answer">
+        <input type="text" th:field="*{fourthAnswer}" class="form-control mb-4 col-4" placeholder="Fourth answer">
+<!--        <input type="hidden" th:field = "*{topic}" th:value="*{topic.id}">-->
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/users/list}">Back to the question list</a>
+</div>
+</body>
+</html>

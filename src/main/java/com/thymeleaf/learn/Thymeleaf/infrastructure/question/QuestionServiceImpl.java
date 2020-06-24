@@ -2,11 +2,13 @@ package com.thymeleaf.learn.Thymeleaf.infrastructure.question;
 
 import com.thymeleaf.learn.Thymeleaf.domain.model.question.Question;
 import com.thymeleaf.learn.Thymeleaf.domain.question.QuestionService;
+import com.thymeleaf.learn.Thymeleaf.domain.topic.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -14,6 +16,7 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final TopicService topicService;
 
     @Override
     public List<Question> findAll() {

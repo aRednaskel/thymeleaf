@@ -1,11 +1,11 @@
 package com.thymeleaf.learn.Thymeleaf.api.question;
 
 import com.thymeleaf.learn.Thymeleaf.domain.model.question.Question;
-import com.thymeleaf.learn.Thymeleaf.domain.model.topic.Topic;
 import com.thymeleaf.learn.Thymeleaf.domain.question.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,8 +32,17 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.findByQuestion(question));
     }
 
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model) {
+        Question newQuestion = new Question();
+
+        model.addAttribute("newQuestion", newQuestion);
+
+        return "questions/newQuestionForm";
+    }
+
     @PostMapping(path = "/newQuestion")
-    public void addNewQuestion(@RequestBody Question question) {
+    public void addNewQuestion(@ModelAttribute("newQuestion") Question question) {
         questionService.save(question);
     }
 
