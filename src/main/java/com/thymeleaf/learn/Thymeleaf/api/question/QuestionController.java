@@ -17,9 +17,13 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @GetMapping(path = "/allQuestions")
-    public ResponseEntity<List<Question>> findAllTopics() {
-        return ResponseEntity.ok(questionService.findAll());
+    @GetMapping(path = "/list")
+    public String findAllTopics(Model model) {
+        List<Question> questions = questionService.findAll();
+
+        model.addAttribute("topics", questions);
+
+        return "questions/list";
     }
 
     @GetMapping(path = "/{id}")
@@ -46,8 +50,9 @@ public class QuestionController {
         questionService.save(question);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id) {
+    @GetMapping("/delete")
+    public String deleteById(@RequestParam("questionId") long id) {
         questionService.deleteById(id);
+        return "redirect:/questions/list";
     }
 }

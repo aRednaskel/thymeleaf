@@ -7,14 +7,14 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Topic Directory</title>
+    <title>Question Directory</title>
 </head>
 
 <body>
 
 <div class="container">
 
-    <h3>Topic Directory</h3>
+    <h3>Question Directory</h3>
     <hr>
 
     <div>
@@ -27,21 +27,17 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Question</th>
             <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="tempTopic : ${topics}">
+        <tr th:each="tempQuestion : ${questionSet}">
 
-            <td th:text="${tempTopic.title}" />
-            <td th:text="${tempTopic.description}" />
+            <td th:text="${tempQuestion.question}" />
             <td>
-                <a th:href="@{/topics/addQuestion(topicId=${tempTopic.id})}" class="btn btn-info btn-sm">Add question</a>
-                <a th:href="@{/topics/questions(topicId=${tempTopic.id})}" class="btn btn-primary btn-sm">Show questions</a>
-                <a th:href="@{/questions/delete(topicId=${tempTopic.id})}" class="btn btn-danger btn-sm"
+                <a th:href="@{/questions/delete(questionId=${tempQuestion.id})}" class="btn btn-danger btn-sm"
                    onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">Delete</a>
             </td>
 

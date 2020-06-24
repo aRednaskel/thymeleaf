@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/topics")
@@ -77,6 +78,14 @@ public class TopicController {
         questionService.save(question);
         topicService.addQuestion(questionService.findByQuestion(question.getQuestion()), id);
         return "redirect:/topics/list";
+    }
+
+    @GetMapping(path = "/questions")
+    public String showAllQuestionsFromTopic(@RequestParam("topicId") long topicId, Model model) {
+        Set questions = topicService.findById(topicId).getQuestionSet();
+        model.addAttribute("questionSet", questions);
+
+        return "questions/list";
     }
 
 }
