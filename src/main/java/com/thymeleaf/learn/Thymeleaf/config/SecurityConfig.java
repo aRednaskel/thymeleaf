@@ -2,7 +2,6 @@ package com.thymeleaf.learn.Thymeleaf.config;
 
 import com.thymeleaf.learn.Thymeleaf.domain.model.user.User;
 import com.thymeleaf.learn.Thymeleaf.domain.user.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -37,10 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/resources/**").permitAll()
+//                .antMatchers("/resources/**").permitAll()
                 .and().formLogin()
                     .loginPage("/login/loginPage")
-                    .loginProcessingUrl("/")
+                    .loginProcessingUrl("/authenticateTheUser")
+                    .defaultSuccessUrl("/users/list")
                 .and().logout().permitAll()
                 .and().exceptionHandling().accessDeniedPage("/login/access-denied");
     }

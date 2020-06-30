@@ -74,7 +74,7 @@ public class TopicController {
     }
 
     @PostMapping(path = "/newQuestion")
-    public String addNewQuestion(@RequestParam("topicId") long id,@ModelAttribute("newQuestion") Question question) {
+    public String addNewQuestion(@RequestParam("topicId") long id, @ModelAttribute("newQuestion") Question question) {
         questionService.save(question);
         topicService.addQuestion(questionService.findByQuestion(question.getQuestion()), id);
         return "redirect:/topics/list";

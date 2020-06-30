@@ -17,7 +17,7 @@
 	<h3>User Directory</h3>
 	<hr>
 
-	<div>
+	<div sec:authorize="isAuthenticated()">
 		User: <span sec:authentication="name"></span>
 		<br>
 		Role(s): <span sec:authentication="principal.authorities"></span>
@@ -26,7 +26,7 @@
 
 	<form th:action="@{/users/search}" class="form-inline">
 		<a th:href="@{/users/showFormForAdd}" class="btn btn-primary btn-sm mr-5 mb-3"> Add User </a>
-		<input class="form-control  ml-5 mr-sm-2 mb-3" type="search" name="userName" placeholder="Search by name" />
+		<input class="form-control  ml-5 mr-sm-2 mb-3" type="search" name="username" placeholder="Search by name" />
 		<button class="btn btn-success mb-3" type="submit">Search</button>
 	</form>
 	

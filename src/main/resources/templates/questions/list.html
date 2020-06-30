@@ -17,7 +17,7 @@
     <h3>Question Directory</h3>
     <hr>
 
-    <div>
+    <div sec:authorize="isAuthenticated()">
         User: <span sec:authentication="name"></span>
         <br>
         Role(s): <span sec:authentication="principal.authorities"></span>
@@ -36,6 +36,14 @@
         <tr th:each="tempQuestion : ${questionSet}">
 
             <td th:text="${tempQuestion.question}" />
+            <td th:text="${tempQuestion.firstAnswer}"/>
+            <td th:text="${tempQuestion.trueFirst}">
+            <td th:text="${tempQuestion.secondAnswer}"/>
+            <td th:text="${tempQuestion.trueSecond}">
+            <td th:text="${tempQuestion.thirdAnswer}"/>
+            <td th:text="${tempQuestion.trueThird}">
+            <td th:text="${tempQuestion.fourthAnswer}"/>
+            <td th:text="${tempQuestion.trueFourth}">
             <td>
                 <a th:href="@{/questions/delete(questionId=${tempQuestion.id})}" class="btn btn-danger btn-sm"
                    onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">Delete</a>

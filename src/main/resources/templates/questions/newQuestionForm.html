@@ -17,17 +17,24 @@
     <form action="#" th:action="@{/topics/newQuestion(topicId=${newQuestion.topic.id})}" th:object="${newQuestion}" method="POST" modelAttribute="newQuestion">
         <input type="hidden" th:field="*{id}">
         <input type="text" th:field="*{question}" class="form-control mb-4 col-4" placeholder="Question">
+
         <input type="text" th:field="*{firstAnswer}" class="form-control mb-4 col-4" placeholder="First answer">
+        <input type="checkbox" name="trueFirst" th:checked="${trueFirst}">
+
         <input type="text" th:field="*{secondAnswer}" class="form-control mb-4 col-4" placeholder="Second answer">
+        <input type="checkbox" name="trueSecond" th:checked="${trueSecond}">
+
         <input type="text" th:field="*{thirdAnswer}" class="form-control mb-4 col-4" placeholder="Third answer">
+        <input type="checkbox" name="trueThird" th:checked="${trueThird}">
+
         <input type="text" th:field="*{fourthAnswer}" class="form-control mb-4 col-4" placeholder="Fourth answer">
-<!--        <input type="hidden" th:field = "*{topic}" th:value="*{topic.id}">-->
+        <input type="checkbox" name="trueFourth" th:checked="${trueFourth}">
 
         <button type="submit" class="btn btn-info col-2">Save</button>
     </form>
 
     <hr>
-    <a th:href="@{/users/list}">Back to the question list</a>
+    <a th:href="@{/topics/list}">Back to the topic list</a>
 </div>
 </body>
 </html>

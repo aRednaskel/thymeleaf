@@ -25,7 +25,7 @@ public class Topic {
     private String title;
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "id")
     private Set<Question> questionSet;
 
     public Topic(String title, String description) {

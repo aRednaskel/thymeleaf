@@ -18,10 +18,22 @@ public class Question {
     private long id;
 
     private String question;
+
     private String firstAnswer;
+    @Column(name = "true_first")
+    private boolean trueFirst;
+
     private String secondAnswer;
+    @Column(name = "true_second")
+    private boolean trueSecond;
+
     private String thirdAnswer;
+    @Column(name = "true_third")
+    private boolean trueThird;
+
     private String fourthAnswer;
+    @Column(name = "true_fourth")
+    private boolean trueFourth;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id")
